@@ -71,3 +71,10 @@ We can render FC like root.render(<RFC/>)
 
 Component compostion -- putting element inside a element
 If we want expecute any JS code in RFC we can put it in {} curly braces to execute javascript airthimetic or any operations and display/render in markup we can also keep JS varibles like JSX sytax components
+
+Ep-4
+
+Props/Properties?
+props is nothing but arguments to the function in React functional components passign props to the component
+
+Conflict driven UI
