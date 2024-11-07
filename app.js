@@ -1,13 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", { id: "Heading" }, "exact thing"),
-    React.createElement("h2", { id: "Heading2" }, "h2 tag in react"),
-  ])
+
+const heading = React.createElement("h1", { id: "Heading" }, "React🚀");
+
+//JSX
+const Title = (
+  <h1 id="Heading" className="Heading">
+    Heading using JSX react
+  </h1>
 );
-console.log(parent);
+const Title1 = () => (
+  <h1 id="Heading" className="Heading">
+    Heading using JSX conmpnent
+  </h1>
+);
+//React funcitonal component
+const HeadingComponent = () => {
+  return <h1>React functional component</h1>;
+};
+//OR We can write in beow
+const HeadingComponent1 = () => (
+  <div className="conatiner">
+    {Title}
+    <Title1 />
+    <h1 className="Heading">React functional component</h1>
+  </div>
+);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+//root.render(heading);
+//root.render(jsxHeading);
+root.render(<HeadingComponent1 />);
