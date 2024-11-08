@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./*.{html,js,ts,jsx,tsx}", // Looks for files in the root directory
+    "./src/**/*.{html,js,ts,jsx,tsx}", // Looks for files in all subdirectories within src
+    "./*.{html,js,ts,jsx,tsx}", // Also checks root files if any remain
   ],
   theme: {
     extend: {

@@ -59,7 +59,8 @@ Attribites in tags for JSX is camel cased
 We need to use ClassName istead of Class like in HTML
 If we want to writ markup in multiple lines in JSX we need to wrap that in () beacuse babel needs to understand where markup is starting and ending
 
-React components?
+# React components?
+
 Everything in React is a component
 -> Class based components
 -> functional components (new way of coding)..uses javascript functions
@@ -74,7 +75,38 @@ If we want expecute any JS code in RFC we can put it in {} curly braces to execu
 
 Ep-4
 
-Props/Properties?
+# Props/Properties?
+
 props is nothing but arguments to the function in React functional components passign props to the component
 
 Conflict driven UI
+
+Ep-5
+
+# React Hooks? write more about it
+
+## React Hooks
+
+### 1. `useState`: State Hook
+
+- **Purpose**: Enables state within functional components.
+- **Syntax**:
+  ```javascript
+  const [state, setState] = useState(initialValue);
+  state holds the initial value.
+  setState updates the state and triggers a re-render.
+  ```
+
+Virtual DOM & Reconciliation
+
+Virtual DOM
+Definition: A lightweight, in-memory representation of the actual DOM.
+How it Works: React updates the Virtual DOM first. Then, only the changes are applied to the real DOM, which optimizes performance.
+Reconciliation & Diff Algorithm
+Reconciliation: React compares the new Virtual DOM with the previous one to identify what’s changed.
+Diff Algorithm: Efficiently finds and updates only the necessary parts in the real DOM, making React fast and efficient.
+Process:
+
+React builds a new Virtual DOM when the state changes.
+The Diff Algorithm compares the new and old Virtual DOM.
+React applies only the necessary updates to the real DOM.
