@@ -489,13 +489,68 @@ useEffect replaces componentDidMount, componentDidUpdate, and componentWillUnmou
 Always include cleanup logic to prevent memory leaks.
 Functional components with useEffect are more concise and flexible than class-based lifecycle methods.
 
-Single responsibility principle ?
-how it is testbale and miantainbale
-modular fashion resuable
+. Single Responsibility Principle (SRP)
 
-Why custom HOOKS? HOOKS are like custom utility functions
-how to optimize JS file size
-smaller bundling in parcel
-when and where to make smaller bundles
-codespliting, Chunking?
-dynamic bundling
+A component or function should have one responsibility.
+Benefits:
+Testable: Focused logic is easier to test.
+Maintainable: Changes affect only one part of the code.
+Reusable: Modular components can be used elsewhere.
+Example: Split logic into custom hooks for better separation:
+
+const useUserData = () => {
+const [userData, setUserData] = React.useState(null);
+useEffect(() => {
+fetch("/api/user").then(res => res.json()).then(setUserData);
+}, []);
+return userData;
+}; 2. Why Custom Hooks?
+
+Encapsulates reusable logic (e.g., API calls, form handling).
+Benefits:
+Reusability: Share logic across components.
+Testability: Hooks can be tested in isolation.
+Separation of Concerns: Keeps components clean and focused.
+Example:
+
+const useFetch = (url) => {
+const [data, setData] = useState(null);
+useEffect(() => {
+fetch(url).then(res => res.json()).then(setData);
+}, [url]);
+return data;
+}; 3. Optimizing JavaScript File Size
+
+Tree Shaking: Removes unused code (use ES6 modules).
+Minification: Parcel minimizes code in production builds.
+Dynamic Imports: Load components or libraries only when needed. 4. Code Splitting & Chunking
+
+Code Splitting: Divides the app into smaller chunks to load only what’s required.
+Chunking: Logical grouping of code (e.g., home page, admin features).
+When to Split:
+
+Large libraries (e.g., chart.js).
+Components/routes used infrequently (e.g., /dashboard). 5. Lazy Loading (On-Demand Loading)
+
+Load components only when needed to improve performance.
+Implementation:
+
+const Dashboard = React.lazy(() => import("./Dashboard"));
+
+<Route path="/dashboard" element={
+<Suspense fallback={<div>Loading...</div>}>
+<Dashboard />
+</Suspense>
+} /> 6. Dynamic Bundling with Parcel
+
+Parcel splits bundles automatically using import().
+Steps:
+Use React.lazy for components.
+Ensure production build (npm run build) to see chunks in dist/.
+Summary
+SRP: Makes code modular, testable, and maintainable.
+Custom Hooks: Encapsulate logic for reuse and cleanliness.
+Optimize JS: Use tree shaking, minification, and dynamic imports.
+Code Splitting: Load only necessary code for better performance.
+Lazy Loading: On-demand loading for specific routes or components.
+Parcel: Supports dynamic imports and chunking automatically.

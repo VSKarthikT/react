@@ -3,27 +3,39 @@ import star from "../../images/star.png";
 const Restaurents = (props) => {
   const { resdata } = props;
   const { ResName, Cusine, Stars, img } = resdata;
+
   return (
     <div
       className="overflow-hidden rounded-lg Restaurent-card 
-          flex flex-col gap-3  bg-slate-300
-          hover:bg-slate-600"
+          flex flex-col gap-4 bg-white shadow-md 
+          hover:shadow-lg hover:scale-105 transition-transform duration-300"
     >
-      <div className="w-[250px] h-[200px]">
-        <img src={img} className="w-full h-full object-fit" />
+      {/* Image Section */}
+      <div className="w-[250px] h-[200px] overflow-hidden rounded-t-lg">
+        <img src={img} className="w-full h-full object-cover" alt={ResName} />
       </div>
-      <div className="flex flex-row justify-between items-center">
-        <h3>{ResName}</h3>
-        <div className="flex justify-start items-center">
-          <img src={star} height={"40px"} width={"40px"} />
-          <p>
-            <span>{Stars}</span>
-            <span>Stars</span>
-          </p>
+
+      {/* Content Section */}
+      <div className="p-4 flex flex-col space-y-2">
+        {/* Restaurant Name */}
+        <h3 className="text-lg font-semibold text-gray-800">{ResName}</h3>
+
+        {/* Star Rating */}
+        <div className="flex items-center justify-between">
+          <p className="text-gray-600 text-sm">{Cusine}</p>
+          <div className="flex items-center">
+            <img src={star} alt="Star Icon" className="h-5 w-5 mr-1" />
+            <p className="text-sm font-medium text-gray-700">
+              {Stars} <span className="text-gray-500">Stars</span>
+            </p>
+          </div>
         </div>
+
+        {/* ETA */}
+        <p className="text-sm text-gray-600">
+          <span className="font-semibold text-gray-800">ETA:</span> 30 mins
+        </p>
       </div>
-      <p>{Cusine}</p>
-      <p>ETA : 30mins</p>
     </div>
   );
 };
