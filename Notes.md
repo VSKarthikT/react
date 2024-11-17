@@ -251,6 +251,7 @@ Example:
 class MyComponent extends React.Component {
 render() {
 return (
+
 <div>
 <h1>Hello, World!</h1>
 </div>
@@ -487,3 +488,14 @@ Conclusion
 useEffect replaces componentDidMount, componentDidUpdate, and componentWillUnmount with a unified syntax.
 Always include cleanup logic to prevent memory leaks.
 Functional components with useEffect are more concise and flexible than class-based lifecycle methods.
+
+Single responsibility principle ?
+how it is testbale and miantainbale
+modular fashion resuable
+
+Why custom HOOKS? HOOKS are like custom utility functions
+how to optimize JS file size
+smaller bundling in parcel
+when and where to make smaller bundles
+codespliting, Chunking?
+dynamic bundling

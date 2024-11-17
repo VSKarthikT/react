@@ -2,52 +2,24 @@ import Restaurents from "./Restaurents";
 import { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
-
+import useOnlinestatus from "../utils/useOnlinestatus";
+import useRestaurentdata from "../utils/useRestaurentdata";
 const Body = () => {
-  // State variables
-  const [allRestaurants, setAllRestaurants] = useState([]); // Store all data
-  const [restaurenList, setRestaurenList] = useState([]); // Store filtered data
-  const [changeButton, setChangeButton] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [searchText, setSearchText] = useState("");
+  const {
+    restaurenList,
+    loading,
+    changeButton,
+    searchText,
+    setSearchText,
+    toggleContent,
+    handleSearch,
+  } = useRestaurentdata();
+  // Online status
 
-  // Fetch data on component mount
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    setLoading(true);
-    const data = await fetch("https://06yo4.wiremockapi.cloud/rest_list");
-    const json = await data.json();
-    console.log(json);
-    setAllRestaurants(json); // Save full data to allRestaurants
-    setRestaurenList(json); // Set list to display
-    setLoading(false);
-  };
-
-  // Filter top-rated restaurants
-  const filter = () => {
-    const topRatedRest = restaurenList.filter((data) => data.Stars >= 4.6);
-    setRestaurenList(topRatedRest);
-    console.log(topRatedRest);
-  };
-
-  // Toggle content between full list and filtered list
-  const toggleContent = () => {
-    setChangeButton(!changeButton);
-    changeButton ? setRestaurenList(allRestaurants) : filter();
-  };
-
-  // Handle search functionality
-  const handleSearch = () => {
-    const filteredList = allRestaurants.filter((rest) =>
-      rest.ResName.toLowerCase().includes(searchText.toLowerCase())
-    );
-    console.log(filteredList);
-    setRestaurenList(filteredList);
-  };
-
+  const online_status = useOnlinestatus();
+  if (online_status === false) {
+    return <h1>You are offline</h1>;
+  }
   // Conditional rendering
   return loading ? (
     <Shimmer />

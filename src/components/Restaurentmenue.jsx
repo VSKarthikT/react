@@ -1,23 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
 import { useParams } from "react-router-dom";
-
+import useRestaurentmenu from "../utils/useRestaurentmenu";
+// Use params is utility fucntion
 const Restaurentmenue = () => {
   const { resId } = useParams();
-  console.log(resId);
-  const [resMenue, setResMenue] = useState(null);
-  useEffect(() => {
-    fetchmenue();
-  }, []);
-  const fetchmenue = async () => {
-    const data = await fetch(
-      "https://06yo4.wiremockapi.cloud/things/resid" + resId
-    );
-    const json = await data.json();
-    console.log(json);
-    setResMenue(json);
-  };
-
+  const resMenue = useRestaurentmenu(resId);
   if (resMenue === null) {
     return <Shimmer />;
   }
